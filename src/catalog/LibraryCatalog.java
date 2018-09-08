@@ -18,7 +18,7 @@ public class LibraryCatalog {
      */
     public LibraryCatalog() {
         // FILL IN CODE: initialize the ArrayList books here
-        books = new ArrayList<>();
+        books = new ArrayList<Book>();
     }
 
     /** Adds a book to the ArrayList of books.
@@ -29,7 +29,6 @@ public class LibraryCatalog {
         // FILL IN CODE
         books.add(book);
     }
-
 
     /**
      * Searches for the book with the given title in the ArrayList
@@ -43,7 +42,7 @@ public class LibraryCatalog {
         for (int i = 0; i < books.size(); i++){
             if ((books.get(i).getTitle()).equals(title)){
                 return books.get(i);
-            }//end of if statement
+            }
         }//end of while loop
         return null;
     }
@@ -122,19 +121,23 @@ public class LibraryCatalog {
         try{
             file = new File(filename);
             Scanner input = new Scanner(file);
-            input.useDelimiter(",");
+            //First row, which are attributes, is not required. Skip this row.
             input.nextLine();
             while(input.hasNextLine()){
+                //read from the rest of the file
                 readLine = input.nextLine();
+                //Each line is separated by "," and then parse it into an array
                 readLineArray = readLine.split(",");
+                //Extract element required at certain indices.
                 title = readLineArray[9];
                 author = readLineArray[7];
                 year = Integer.parseInt(readLineArray[8]);
                 rating = Double.parseDouble(readLineArray[12]);
+                //create book object and parse it into ArrayList.
                 book = new Book(title, author, year, rating);
                 books.add(book);
-            }
-        }catch (java.io.FileNotFoundException e){
+            }//end of while loop
+        }catch(java.io.FileNotFoundException e){
             e.printStackTrace();
             System.out.println("file not found");
         }

@@ -59,7 +59,7 @@ public class Book {
     public double getAverageRating() {
         // FILL IN CODE
 
-        return 0; // remember to change it
+        return averageRating; // remember to change it
     }
 
     /**

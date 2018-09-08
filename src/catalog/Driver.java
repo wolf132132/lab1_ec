@@ -15,5 +15,4 @@ public class Driver {
         UserInterface ui = new UserInterface();
         ui.mainLoop(lc);
     }
-
 }

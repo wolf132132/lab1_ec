@@ -35,49 +35,53 @@ public class UserInterface {
         // available (not checked out).
 
         // If a user enters 4, exit the program
-        int userOption;
+        String userOption;
         String nameOfBook;
         Book book;
-        Scanner input = new Scanner(System.in);
+        Scanner userOptionInput = new Scanner(System.in);
+        Scanner titleInput = new Scanner(System.in);
         while(true){
             System.out.println("To check out a book, please insert 1.");
             System.out.println("To return a book, please insert 2.");
             System.out.println("To see which book is available, please insert 3.");
             System.out.println("To exit from the program, insert 4.");
-            userOption = input.nextInt();
-            switch(userOption){
-                case 1:
+            userOption = userOptionInput.nextLine();
+            try {
+                if (userOption.equals(CHECKOUT)) {
                     System.out.println("Please insert the title of the book: ");
-                    nameOfBook = input.nextLine();
+                    nameOfBook = titleInput.nextLine();
                     book = lc.findBook(nameOfBook);
-                    if (!book.isCheckedOut()){
+                    if (!book.isCheckedOut()) {
                         lc.checkoutBook(nameOfBook);
                         System.out.println("The book has been checked out successfully");
-                    }else{
+                    } else {
                         System.out.println("The book is not available to be checked out.");
                     }
                     continue;
-
-                case 2:
+                } else if (userOption.equals(RETURN)) {
                     System.out.println("Please insert the title of the book: ");
-                    nameOfBook = input.nextLine();
+                    nameOfBook = titleInput.nextLine();
                     book = lc.findBook(nameOfBook);
-                    if (book.isCheckedOut()){
+                    if (book.isCheckedOut()) {
                         lc.returnBook(nameOfBook);
                     }
                     System.out.println("The book has been returned");
                     continue;
-
-                case 3:
+                }else if (userOption.equals(PRINT_AVAILABLE)) {
                     System.out.println("System is showing available books: ");
                     System.out.println(lc.getAvailableBooks());
                     continue;
-                case 4:
+                }else{
                     System.out.println("System terminated.");
                     break;
+                }//end of if statement
+            }catch (NullPointerException e){
+                e.printStackTrace();
+                System.out.println("Book is not found. Return to main menu");
+                System.out.println(" ");
+                continue;
             }
         }
-
 
     } // mainLoop
 }
