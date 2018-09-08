@@ -18,7 +18,7 @@ public class LibraryCatalog {
      */
     public LibraryCatalog() {
         // FILL IN CODE: initialize the ArrayList books here
-        books = new ArrayList<Book>();
+        books = new ArrayList<>();
     }
 
     /** Adds a book to the ArrayList of books.
@@ -111,7 +111,33 @@ public class LibraryCatalog {
         // variable "year", you can use Integer.parseInt(String s) function.
         // You are required to catch FileNotFoundException or IOException
         // in this method
-
+        File file;
+        String readLine = "";
+        String[] readLineArray;
+        Book book;
+        String title;
+        String author;
+        int year;
+        double rating;
+        try{
+            file = new File(filename);
+            Scanner input = new Scanner(file);
+            input.useDelimiter(",");
+            input.nextLine();
+            while(input.hasNextLine()){
+                readLine = input.nextLine();
+                readLineArray = readLine.split(",");
+                title = readLineArray[9];
+                author = readLineArray[7];
+                year = Integer.parseInt(readLineArray[8]);
+                rating = Double.parseDouble(readLineArray[12]);
+                book = new Book(title, author, year, rating);
+                books.add(book);
+            }
+        }catch (java.io.FileNotFoundException e){
+            e.printStackTrace();
+            System.out.println("file not found");
+        }
     }
 
 
