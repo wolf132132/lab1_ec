@@ -74,11 +74,10 @@ public class Book {
             isCheckedOut = true;
             return true;
         }else{
-            isCheckedOut = false;
             return false;
-        }
+        }//end of if statement
         // remember to change it
-    }
+    }//end of method
 
     /**
      * Return the book if it is currently checked out, return true.
@@ -87,9 +86,13 @@ public class Book {
      */
     public boolean returnBook() {
         // FILL IN CODE
-        isCheckedOut = false;
-        return true; // remember to change it
-    }
+        if(isCheckedOut) {
+            isCheckedOut = false;
+            return true; // remember to change it
+        }else{
+            return false;
+        }//end of if statement
+    }//end of method
 
     /** Return a string with the information about the book
      * in the following format:

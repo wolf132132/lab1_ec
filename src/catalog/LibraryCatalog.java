@@ -61,9 +61,7 @@ public class LibraryCatalog {
                 if (!books.get(i).isCheckedOut()) {
                     books.get(i).checkoutBook();
                     return true;
-                }else{
-                    return false;
-                }
+                }//end of if statement.
             }//end of if statement
         }//End of for loop
         return false; // remember to change it
