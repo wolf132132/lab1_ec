@@ -1,7 +1,6 @@
 package catalog;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /** LibraryCatalog Class - represents a collection of books,
  *  where each book can be "checked out" and "returned".
@@ -77,13 +76,11 @@ public class LibraryCatalog {
     public boolean returnBook(String title) {
         // FILL IN CODE
         for (int i = 0; i < books.size(); i++){
-            if((books.get(i).getTitle()).equals(title)){
+            if ((books.get(i).getTitle()).equals(title)){
                 if (books.get(i).isCheckedOut()){
                     books.get(i).returnBook();
                     return true;
-                }
-            }else{
-                System.out.println("No book found in the catalog");
+                }//end of is statement
             }//end of if statement
         }//end of for loop
         return false; // remember to change it
@@ -107,7 +104,9 @@ public class LibraryCatalog {
         // variable "year", you can use Integer.parseInt(String s) function.
         // You are required to catch FileNotFoundException or IOException
         // in this method
+        //readLine returns year as 1985.0 for example. Therefore, instantiate yearTemp to be converted into double
         FileReader file;
+        BufferedReader input;
         String readLine;
         String[] readLineArray;
         Book book;
@@ -118,7 +117,7 @@ public class LibraryCatalog {
         double rating;
         try{
             file = new FileReader(filename);
-            BufferedReader input = new BufferedReader(file);
+            input = new BufferedReader(file);
             //First row, which are attributes, is not required. Skip this row.
             input.readLine();
             while((readLine = input.readLine())!=null){
@@ -132,18 +131,20 @@ public class LibraryCatalog {
                 year = (int)yearTemp;
                 rating = Double.parseDouble(readLineArray[12]);
                 //create book object and parse it into ArrayList.
-                if((author.charAt(0)) == '"'){
+                //Certain authors is returned being embraced by double quotes. Eliminate quotes in this case.
+                if ((author.charAt(0)) == '"'){
                     author = author.substring(1, author.length() - 1);
-                }
+                }//end of if statement.
                 book = new Book(title, author, year, rating);
                 books.add(book);
             }//end of while loop
-        }catch(java.io.FileNotFoundException e){
+        } catch (java.io.FileNotFoundException e){
             e.printStackTrace();
-            System.out.println("file not found");
+            System.out.println("file not found. Return to main menu");
         } catch (IOException e) {
             e.printStackTrace();
-        }
+            System.out.println("file not found. Return to main menu");
+        }//end of try catch
     }
 
 
@@ -155,10 +156,10 @@ public class LibraryCatalog {
         // FILL IN CODE
         String str = "";
         for (int i = 0; i < books.size(); i++){
-            if(!books.get(i).isCheckedOut()) {
+            if (!books.get(i).isCheckedOut()) {
                 str = str + books.get(i).toString() + System.lineSeparator();
-            }
-        }
+            }//end of if statement
+        }//end of for loop
         return str; // remember to change it
     }
 
@@ -176,7 +177,7 @@ public class LibraryCatalog {
         String str = "";
         for (int i = 0; i < books.size(); i++){
             str = str + books.get(i).toString() + System.lineSeparator();
-        }
+        }//end of for loop
         return str; // remember to change it
     }
 

@@ -54,8 +54,10 @@ public class UserInterface {
                     if (!book.isCheckedOut()) {
                         lc.checkoutBook(nameOfBook);
                         System.out.println("The book has been checked out successfully");
+                        System.out.println("");
                     } else {
                         System.out.println("The book is not available to be checked out.");
+                        System.out.println("");
                     }
                     continue;
                 } else if (userOption.equals(RETURN)) {
@@ -64,24 +66,28 @@ public class UserInterface {
                     book = lc.findBook(nameOfBook);
                     if (book.isCheckedOut()) {
                         lc.returnBook(nameOfBook);
+                        System.out.println("The book has been returned");
+                        System.out.println("");
+                    } else {
+                        System.out.println("Book was not returned successfully");
+                        System.out.println("");
                     }
-                    System.out.println("The book has been returned");
                     continue;
-                }else if (userOption.equals(PRINT_AVAILABLE)) {
+                } else if (userOption.equals(PRINT_AVAILABLE)) {
                     System.out.println("System is showing available books: ");
                     System.out.println(lc.getAvailableBooks());
                     continue;
-                }else{
+                } else {
                     System.out.println("System terminated.");
+                    System.out.println("");
                     break;
                 }//end of if statement
             }catch (NullPointerException e){
                 e.printStackTrace();
                 System.out.println("Book is not found. Return to main menu");
-                System.out.println(" ");
+                System.out.println("");
                 continue;
-            }
-        }
-
+            }//end of try-catch
+        }//end of while loop
     } // mainLoop
 }

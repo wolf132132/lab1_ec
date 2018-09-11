@@ -37,9 +37,9 @@ public class Book {
         // FILL IN CODE
         if (isCheckedOut){
             return true;
-        }else{
+        } else {
             return false; // remember to change it!
-        }
+        }//end of if-else statement
     }
 
     /**
@@ -48,7 +48,6 @@ public class Book {
      */
     public String getTitle() {
         // FILL IN CODE
-
         return title; // remember to change it
     }
 
@@ -58,7 +57,6 @@ public class Book {
      */
     public double getAverageRating() {
         // FILL IN CODE
-
         return averageRating; // remember to change it
     }
 
@@ -70,10 +68,10 @@ public class Book {
      */
     public boolean checkoutBook() {
         // FILL IN CODE
-        if(!isCheckedOut){
+        if (!isCheckedOut){
             isCheckedOut = true;
             return true;
-        }else{
+        } else {
             return false;
         }//end of if statement
         // remember to change it
@@ -86,10 +84,10 @@ public class Book {
      */
     public boolean returnBook() {
         // FILL IN CODE
-        if(isCheckedOut) {
+        if(isCheckedOut){
             isCheckedOut = false;
             return true; // remember to change it
-        }else{
+        } else {
             return false;
         }//end of if statement
     }//end of method
