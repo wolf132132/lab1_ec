@@ -116,6 +116,7 @@ public class LibraryCatalog {
         Book book;
         String title;
         String author;
+        double yearTemp;
         int year;
         double rating;
         try{
@@ -131,9 +132,13 @@ public class LibraryCatalog {
                 //Extract element required at certain indices.
                 title = readLineArray[9];
                 author = readLineArray[7];
-                year = Integer.parseInt(readLineArray[8]);
+                yearTemp = Double.parseDouble(readLineArray[8]);
+                year = (int)yearTemp;
                 rating = Double.parseDouble(readLineArray[12]);
                 //create book object and parse it into ArrayList.
+                if((author.charAt(0)) == '"'){
+                    author = author.substring(1, author.length() - 2);
+                }
                 book = new Book(title, author, year, rating);
                 books.add(book);
             }//end of while loop
