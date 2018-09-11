@@ -1,6 +1,5 @@
 package catalog;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +17,7 @@ public class LibraryCatalog {
      */
     public LibraryCatalog() {
         // FILL IN CODE: initialize the ArrayList books here
-        books = new ArrayList<Book>();
+        books = new ArrayList<>();
     }
 
     /** Adds a book to the ArrayList of books.
@@ -110,8 +109,8 @@ public class LibraryCatalog {
         // variable "year", you can use Integer.parseInt(String s) function.
         // You are required to catch FileNotFoundException or IOException
         // in this method
-        File file;
-        String readLine = "";
+        FileReader file;
+        String readLine;
         String[] readLineArray;
         Book book;
         String title;
@@ -120,13 +119,12 @@ public class LibraryCatalog {
         int year;
         double rating;
         try{
-            file = new File(filename);
-            Scanner input = new Scanner(file);
+            file = new FileReader(filename);
+            BufferedReader input = new BufferedReader(file);
             //First row, which are attributes, is not required. Skip this row.
-            input.nextLine();
-            while(input.hasNextLine()){
+            input.readLine();
+            while((readLine = input.readLine())!=null){
                 //read from the rest of the file
-                readLine = input.nextLine();
                 //Each line is separated by "," and then parse it into an array
                 readLineArray = readLine.split(",");
                 //Extract element required at certain indices.
@@ -145,6 +143,8 @@ public class LibraryCatalog {
         }catch(java.io.FileNotFoundException e){
             e.printStackTrace();
             System.out.println("file not found");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
