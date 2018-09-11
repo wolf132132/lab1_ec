@@ -137,7 +137,7 @@ public class LibraryCatalog {
                 rating = Double.parseDouble(readLineArray[12]);
                 //create book object and parse it into ArrayList.
                 if((author.charAt(0)) == '"'){
-                    author = author.substring(1, author.length() - 2);
+                    author = author.substring(1, author.length() - 1);
                 }
                 book = new Book(title, author, year, rating);
                 books.add(book);
